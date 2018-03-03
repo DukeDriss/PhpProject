@@ -34,7 +34,7 @@ if(isset($_SESSION['id'])){
 <body class="hold-transition register-page">
 <div class="register-box">
   <div class="register-logo">
-    <a href="/index.php"><b>Home</b>LTE</a>
+    <a href="/logit.php"><b>Home</b>LTE</a>
   </div>
 
   <div class="register-box-body">
@@ -88,7 +88,7 @@ if(isset($_SESSION['id'])){
         Google+</a>
     </div>
 
-    <a href="index.php" class="text-center">I already have a membership</a>
+    <a href="logit.php" class="text-center">I already have a membership</a>
   </div>
   <!-- /.form-box -->
 </div>

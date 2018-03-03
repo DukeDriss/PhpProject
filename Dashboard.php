@@ -1,6 +1,6 @@
 <?php session_start();
 if(!isset($_SESSION['id'])){
-  header("location:index.php");
+  header("location:logit.php");
 }
 
 
@@ -69,7 +69,7 @@ desired effect
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a href="logit.php" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>A</b>LT</span>
       <!-- logo for regular state and mobile devices -->
@@ -268,7 +268,7 @@ desired effect
       <ul class="sidebar-menu" data-widget="tree">
        <li class="header">MAIN NAVIGATION</li>
        <li class="active">
-         <a href="index.html">
+         <a href="logit.php">
            <i class="fa fa-dashboard"></i> <span>Home</span>
          </a>
        </li>
@@ -299,7 +299,7 @@ desired effect
            <li><a href="Comptes.php"><i class="fa fa-circle-o"></i>Comptes</a></li>
            <li><a href="matches.php"><i class="fa fa-circle-o"></i> Matchs</a></li>
            <li><a href="news.php"><i class="fa fa-circle-o"></i>News</a></li>
-           <li><a href="equip.pgp"><i class="fa fa-circle-o"></i>Les équipes</a></li>
+           <li><a href="equip.php"><i class="fa fa-circle-o"></i>Les équipes</a></li>
          </ul>
        </li>
        <li>
@@ -330,10 +330,52 @@ desired effect
 
     <!-- Main content -->
     <section class="content container-fluid">
-
-      <!--------------------------
-        | Your Page Content Here |
-        -------------------------->
+      <div class="row">
+        <h2 class="text-center">Menu</h2>
+        <div class="col-md-3">
+          <a  class="text-center" href="gerer_equip.php" style="padding-left:15px;"> <label >Gerer Equipe</label><br>
+          <img width="100" height="100" padding="5px;" src="icons/team.png">
+          </a>
+        </div>
+        <div class="col-md-3">
+          <a class="text-center" href="gerer_news.php" style="padding-left:15px;"> <label >Gerer News</label><br>
+              <img width="100" height="100" src="icons/newspaper.png">
+          </a>
+        </div>
+        <div class="col-md-3">
+          <a class="text-center" href="gerer_comptes.php" style="padding-left:15px;"> <label >Gerer Comptes</label><br>
+            <img width="100" height="100" src="icons/account.png">
+          </a>
+        </div>
+        <div class="col-md-3">
+          <a class="text-center" href="gerer_matches.php" style="padding-left:15px;"> <label >Gerer Matches</label><br>
+            <img width="100" height="100" src="icons/football-field.png">
+          </a>
+        </div>
+      </div>
+      <div class="row">
+        <h2 class="text-center">Statistique's</h2>
+        <div class="col-md-3">
+          <a  class="text-center" href="equip.php" style="padding-left:15px;"> <label >Equipe</label><br>
+          <img width="100" height="100" padding="5px;" src="icons/team.png">
+          </a>
+        </div>
+        <div class="col-md-3">
+          <a class="text-center" href="News.php" style="padding-left:15px;"> <label >News</label><br>
+              <img width="100" height="100" src="icons/newspaper.png">
+          </a>
+        </div>
+        <div class="col-md-3">
+          <a class="text-center" href="comptes.php" style="padding-left:15px;"> <label >Comptes</label><br>
+            <img width="100" height="100" src="icons/account.png">
+          </a>
+        </div>
+        <div class="col-md-3">
+          <a class="text-center" href="matches.php" style="padding-left:15px;"> <label >Matches</label><br>
+            <img width="100" height="100" src="icons/football-field.png">
+          </a>
+        </div>
+      </div>
 
     </section>
     <!-- /.content -->

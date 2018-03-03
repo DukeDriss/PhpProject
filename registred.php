@@ -13,7 +13,7 @@ if(!empty($_POST)){
     $query= "INSERT INTO `compte` (`login`, `motpass`, `type`, `EstActif`)VALUES('$name', '$password','$type','1')";
     $con->exec($query);
     echo "done! saved " . $query;
-    header("location:index.php");
+    header("location:logit.php");
 }
 catch(PDOException $e)
 {

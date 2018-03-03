@@ -11,6 +11,6 @@ if(isset($_SESSION['id'])){
     header("location:Profile.php");
  }
 }else{
-header("location:index.php");
+header("location:logit.php");
 }
 ?>

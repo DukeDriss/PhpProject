@@ -340,35 +340,31 @@ desired effect
    </section>
    <?php
    $conn =new PDO('mysql:host=localhost;dbname=projet','root','');
-   $q="select * from equipe";
+   $q="select * from news";
    ?>
    <!-- Main content -->
    <section class="content">
 
      <!-- Default box -->
      <table class="table table-inverse" id="ourtable">
-       <thead><tr><th>Nom Equipe</th><th>Date Creation</th><th>stade</th><th>logo</th><th>adresse</th><th>email</th><th>site</th><th>tel</th><th>fax</th><th>ville</th></tr></thead>
+       <thead><tr><th>Sujet</th><th>Auteur</th><th>Text</th><th>Photo</th><th>Video</th><th>Date Publication</th></tr></thead>
        <tbody>
          <?php
          foreach ($conn->query($q) as $line) {
            echo "<tr>";
-           echo "<td>".$line[1]."</td>";
-           echo "<td>".$line[2]."</td>";
-           echo "<td>".$line[3]."</td>";
-           echo "<td>".$line[4]."</td>";
-           echo "<td>".$line[5]."</td>";
-           echo "<td>".$line[6]."</td>";
-           echo "<td>".$line[7]."</td>";
-           echo "<td>".$line[8]."</td>";
-           echo "<td>".$line[9]."</td>";
-           echo "<td>".$line[10]."</td>";
-           echo "<td> <a href='equipe/equipe-edit.php?id=".$line[0]."'>  <img class='img imga' src='icons/edit.png'>&nbsp;&nbsp;</a> &nbsp <a href='equipe/equipe-del.php?id=".$line[0]."'>  <img class='img imga' src='icons/del.png'>&nbsp;&nbsp;</a> </td>";
+           echo "<td width='150px'>".$line[1]."</td>";
+           echo "<td width='150px'>".$line[2]."</td>";
+           echo "<td width='150px'><div style='overflow:hidden;text-overflow:clip;height:60px;'>".$line[3]."</div></td>";
+           echo "<td width='150px'><img  class='img imga' src='".$line[4]."'></td>";
+           echo "<td width='150px'><img class='img imga' src='".$line[5]."'></td>";
+           echo "<td width='150px'>".$line[6]."</td>";
+           echo "<td> <a href='news/news-edit.php?id=".$line[0]."'>  <img class='img imga' src='icons/edit.png'>&nbsp;&nbsp;</a> &nbsp <a href='news/news-del.php?id=".$line[0]."'>  <img class='img imga' src='icons/del.png'>&nbsp;&nbsp;</a> </td>";
            echo "</tr>";
          }
          ?>
        </tbody>
      </table>
-      <a href='equipe/equipe-add.php'>
+      <a href='news/news-add.php'>
           <img class="img imga" src="icons/add.png" >
      </a>
    </section>

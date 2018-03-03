@@ -1,9 +1,26 @@
 <?php session_start();
-if(!isset($_SESSION['id'])){
+if(!isset($_SESSION['id']) || $_SESSION['type']!="Administrateur"){
   header("location:logit.php");
 }
+?>
+<?php
+$id = $_GET['id'];
+$con = new mysqli ('localhost','root','','projet');
 
-
+if(isset($_POST['num'])){
+  $num= $_POST['num'];
+  $date= $_POST['date'];
+  $code1 = $_POST['code1'];
+  $code2= $_POST['code2'];
+  $but1= $_POST['but1'];
+  $but2= $_POST['but2'];
+$query = "UPDATE `matche` SET `datematch` = '$date', `CodeEquipe1` = '$code1', `CodeEquipe2` = '$code2', `butEq1` = '$but1', `butEq2` = '$but2'  WHERE `matche`.`Njour` = '$num' ";
+if ($con->query($query) === TRUE) {
+    echo "Record updated successfully";
+} else {
+    echo "Error updating record: " . $con->error;
+}
+}
 
 
 ?>
@@ -19,22 +36,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <title>AdminLTE 2 | Starter</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.min.css">
   <!-- Ionicons -->
-  <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
+  <link rel="stylesheet" href="../bower_components/Ionicons/css/ionicons.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="../dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
         page. However, you can choose any other skin. Make sure you
         apply the skin class to the body tag so the changes take effect. -->
-  <link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
-  <style>
-  .imga{
-    width: 40px;
-    height: 40px;
-  }</style>
+  <link rel="stylesheet" href="../dist/css/skins/skin-blue.min.css">
+
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -164,16 +177,10 @@ desired effect
                     <a href="#">
                       <!-- Task title and progress text -->
                       <h3>
-
-
-
-
-
                         Design some buttons
                         <small class="pull-right">20%</small>
                       </h3>
                       <!-- The progress bar -->
-
                       <div class="progress xs">
                         <!-- Change the css width attribute to simulate progress -->
                         <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar"
@@ -291,10 +298,10 @@ desired effect
            </span>
          </a>
          <ul class="treeview-menu">
-           <li><a href="gerer_equip.php"><i class="fa fa-circle-o"></i>Gerer Equipe</a></li>
-           <li><a href="gerer_news.php"><i class="fa fa-circle-o"></i>Gérer  News</a></li>
-           <li><a href="gerer_comptes.php"><i class="fa fa-circle-o"></i>Gérer Comptes</a></li>
-           <li><a href="gerer_matches.php"><i class="fa fa-circle-o"></i>Gérer Matchs</a></li>
+           <li><a href="../gerer_equip.php"><i class="fa fa-circle-o"></i>Gerer Equipe</a></li>
+           <li><a href="../gerer_news.php"><i class="fa fa-circle-o"></i>Gérer  News</a></li>
+           <li><a href="../gerer_comptes.php"><i class="fa fa-circle-o"></i>Gérer Comptes</a></li>
+           <li><a href="../gerer_matches.php"><i class="fa fa-circle-o"></i>Gérer Matchs</a></li>
          </ul>
        </li>
        <li class="treeview">
@@ -326,54 +333,33 @@ desired effect
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-   <!-- Content Header (Page header) -->
-   <section class="content-header">
-     <h1>
-       Gerer Equip
-       <small>it all starts here</small>
-     </h1>
-     <ol class="breadcrumb">
-       <li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
-       <li><a href="#">Administrateur</a></li>
-       <li class="active">Gerer Equip</li>
-     </ol>
-   </section>
-   <?php
-   $conn =new PDO('mysql:host=localhost;dbname=projet','root','');
-   $q="select * from equipe";
-   ?>
-   <!-- Main content -->
-   <section class="content">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Page Header
+        <small>Optional description</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+        <li class="active">Here</li>
+      </ol>
+    </section>
 
-     <!-- Default box -->
-     <table class="table table-inverse" id="ourtable">
-       <thead><tr><th>Nom Equipe</th><th>Date Creation</th><th>stade</th><th>logo</th><th>adresse</th><th>email</th><th>site</th><th>tel</th><th>fax</th><th>ville</th></tr></thead>
-       <tbody>
-         <?php
-         foreach ($conn->query($q) as $line) {
-           echo "<tr>";
-           echo "<td>".$line[1]."</td>";
-           echo "<td>".$line[2]."</td>";
-           echo "<td>".$line[3]."</td>";
-           echo "<td>".$line[4]."</td>";
-           echo "<td>".$line[5]."</td>";
-           echo "<td>".$line[6]."</td>";
-           echo "<td>".$line[7]."</td>";
-           echo "<td>".$line[8]."</td>";
-           echo "<td>".$line[9]."</td>";
-           echo "<td>".$line[10]."</td>";
-           echo "<td> <a href='equipe/equipe-edit.php?id=".$line[0]."'>  <img class='img imga' src='icons/edit.png'>&nbsp;&nbsp;</a> &nbsp <a href='equipe/equipe-del.php?id=".$line[0]."'>  <img class='img imga' src='icons/del.png'>&nbsp;&nbsp;</a> </td>";
-           echo "</tr>";
-         }
-         ?>
-       </tbody>
-     </table>
-      <a href='equipe/equipe-add.php'>
-          <img class="img imga" src="icons/add.png" >
-     </a>
-   </section>
-   <!-- /.content -->
- </div>
+    <!-- Main content -->
+    <section class="content container-fluid">
+      <form method="post" target="equipe-edit.php">
+          <table class="table table-inverse">
+            <tr>  <th>Date Mtch</th> <td><input type="date" name="date" ></td></tr>
+            <tr>  <th>Code Equipe 1</th><td><input type="text" name="code1" ></td>  </tr>
+            <tr>  <th>Code Equipe 2</th> <td><input type="text" name="code2" ></td> </tr>
+            <tr>  <th>But Eq 1</th><td><input type="text" name="but1" ></td></tr>
+            <tr>  <th>But Eq 2</th><td><input type="text" name="but2" ></td></tr>
+            <tr>  <td><input class="btn btn-success" value="save" type="submit"></td><td><a href="../gerer_matches.php"><input class="btn btn-danger" value="return" type="button"></a></td></tr>
+          </table>
+      </form>
+    </section>
+    <!-- /.content -->
+  </div>
   <!-- /.content-wrapper -->
 
   <!-- Main Footer -->
@@ -468,11 +454,11 @@ desired effect
 <!-- REQUIRED JS SCRIPTS -->
 
 <!-- jQuery 3 -->
-<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="../bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
-<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
-<script src="dist/js/adminlte.min.js"></script>
+<script src="../dist/js/adminlte.min.js"></script>
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the

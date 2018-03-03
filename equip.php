@@ -1,12 +1,9 @@
-<?php session_start();
+Menu<?php session_start();
 if(!isset($_SESSION['id'])){
   header("location:logit.php");
 }
-
-
-
-
 ?>
+
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
@@ -16,7 +13,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Starter</title>
+  <title>AdminLTE 2 | Comptes</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
@@ -362,15 +359,11 @@ desired effect
            echo "<td>".$line[8]."</td>";
            echo "<td>".$line[9]."</td>";
            echo "<td>".$line[10]."</td>";
-           echo "<td> <a href='equipe/equipe-edit.php?id=".$line[0]."'>  <img class='img imga' src='icons/edit.png'>&nbsp;&nbsp;</a> &nbsp <a href='equipe/equipe-del.php?id=".$line[0]."'>  <img class='img imga' src='icons/del.png'>&nbsp;&nbsp;</a> </td>";
            echo "</tr>";
          }
          ?>
        </tbody>
      </table>
-      <a href='equipe/equipe-add.php'>
-          <img class="img imga" src="icons/add.png" >
-     </a>
    </section>
    <!-- /.content -->
  </div>

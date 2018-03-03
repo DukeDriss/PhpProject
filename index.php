@@ -35,7 +35,7 @@ if(isset($_SESSION['id'])){
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="index.php"><b>Home</b>LTE</a>
+    <a href="logit.php"><b>Home</b>LTE</a>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">

@@ -1,6 +1,6 @@
 <?php session_start();
 if($_SESSION['type']!="Administrateur"){
-  header("location:index.php");
+  header("location:logit.php");
 }
 ?>
 <?php

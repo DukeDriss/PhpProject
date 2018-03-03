@@ -1,6 +1,6 @@
 Menu<?php session_start();
 if(!isset($_SESSION['id'])){
-  header("location:index.php");
+  header("location:logit.php");
 }
 ?>
 
@@ -70,7 +70,7 @@ desired effect
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a href="logit.php" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>A</b>LT</span>
       <!-- logo for regular state and mobile devices -->
@@ -275,7 +275,7 @@ desired effect
       <ul class="sidebar-menu" data-widget="tree">
        <li class="header">MAIN NAVIGATION</li>
        <li class="active">
-         <a href="index.html">
+         <a href="logit.php">
            <i class="fa fa-dashboard"></i> <span>Home</span>
          </a>
        </li>
@@ -306,7 +306,7 @@ desired effect
            <li><a href="Comptes.php"><i class="fa fa-circle-o"></i>Comptes</a></li>
            <li><a href="matches.php"><i class="fa fa-circle-o"></i> Matchs</a></li>
            <li><a href="news.php"><i class="fa fa-circle-o"></i>News</a></li>
-           <li><a href="equip.pgp"><i class="fa fa-circle-o"></i>Les équipes</a></li>
+           <li><a href="equip.php"><i class="fa fa-circle-o"></i>Les équipes</a></li>
          </ul>
        </li>
        <li>
