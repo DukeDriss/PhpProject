@@ -1,3 +1,9 @@
+<?php session_start();
+if(!isset($_SESSION['id'])){
+  header("location:index.php");
+}
+
+?>
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
@@ -21,7 +27,55 @@ scratch. This page gets rid of all links and provides the needed markup only.
         page. However, you can choose any other skin. Make sure you
         apply the skin class to the body tag so the changes take effect. -->
   <link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
+  <style>
+  .imga{
+    width: 40px;
+    height: 40px;
+  }
+  .news{
+    background-color: #34343434;
+    margin : 10px;
+    box-shadow: 2px 2px 1px;
+    height : auto;
+    width: auto;
+    text-align:center;
+    border-radius: 10px;
+    border : 1px solid black;
+  }
+  .news-title {
+    margin-top:10px;
+        background-color: #21212121;
+    text-transform: capitalize;
+  }
+  .news-text{
+    text-align: justify;
+    margin: 40px;
+  }
+  .news-photo img{
+    text-align: center;
+    height: 400px;
+    width: auto;
+    margin:10px;
+  }
+  .news-vedio img{
+    height: 400px;
+    width: auto;
+    margin:10px;
+    text-align: center;
+  }
+  .news-date{
+    text-align: right;
+    margin-right: 25px;
+  }
+  .news-author{
+  text-align: right;
+  margin-right: 10px;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin: 10px;
+  }
 
+</style>
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -151,10 +205,16 @@ desired effect
                     <a href="#">
                       <!-- Task title and progress text -->
                       <h3>
+
+
+
+
+
                         Design some buttons
                         <small class="pull-right">20%</small>
                       </h3>
                       <!-- The progress bar -->
+
                       <div class="progress xs">
                         <!-- Change the css width attribute to simulate progress -->
                         <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar"
@@ -179,7 +239,7 @@ desired effect
               <!-- The user image in the navbar-->
               <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs">Alexander Pierce</span>
+              <span class="hidden-xs"><?php echo $_SESSION['id']; ?> </span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
@@ -187,7 +247,7 @@ desired effect
                 <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                 <p>
-                  Alexander Pierce - Web Developer
+                  <?php echo $_SESSION['id']; ?> - Web Developer
                   <small>Member since Nov. 2012</small>
                 </p>
               </li>
@@ -237,7 +297,7 @@ desired effect
           <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Alexander Pierce</p>
+          <p><?php echo $_SESSION['id']; ?></p>
           <!-- Status -->
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
@@ -257,22 +317,49 @@ desired effect
 
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">HEADER</li>
-        <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
-        <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#">Link in level 2</a></li>
-            <li><a href="#">Link in level 2</a></li>
-          </ul>
-        </li>
-      </ul>
+       <li class="header">MAIN NAVIGATION</li>
+       <li class="active">
+         <a href="index.html">
+           <i class="fa fa-dashboard"></i> <span>Home</span>
+         </a>
+       </li>
+       <li class="treeview">
+         <a href="#">
+           <i class="fa fa-pie-chart"></i>
+           <span>Menu</span>
+           <span class="pull-right-container">
+             <i class="fa fa-angle-left pull-right"></i>
+           </span>
+         </a>
+         <ul class="treeview-menu">
+           <li><a href="gerer_equip.php"><i class="fa fa-circle-o"></i>Gerer Equipe</a></li>
+           <li><a href="gerer_news.php"><i class="fa fa-circle-o"></i>Gérer  News</a></li>
+           <li><a href="gerer_comptes.php"><i class="fa fa-circle-o"></i>Gérer Comptes</a></li>
+           <li><a href="gerer_matches.php"><i class="fa fa-circle-o"></i>Gérer Matchs</a></li>
+         </ul>
+       </li>
+       <li class="treeview">
+         <a href="#">
+           <i class="fa fa-pie-chart"></i>
+           <span>Statistique</span>
+           <span class="pull-right-container">
+             <i class="fa fa-angle-left pull-right"></i>
+           </span>
+         </a>
+         <ul class="treeview-menu">
+           <li><a href="Comptes.php"><i class="fa fa-circle-o"></i>Comptes</a></li>
+           <li><a href="matches.php"><i class="fa fa-circle-o"></i> Matchs</a></li>
+           <li><a href="news.php"><i class="fa fa-circle-o"></i>News</a></li>
+           <li><a href="equip.pgp"><i class="fa fa-circle-o"></i>Les équipes</a></li>
+         </ul>
+       </li>
+       <li>
+         <a href="pages/Graph">
+           <i class="fa fa-pie-chart"></i>
+           <span>Graphes</span>
+         </a>
+       </li>
+     </ul>
       <!-- /.sidebar-menu -->
     </section>
     <!-- /.sidebar -->
@@ -280,28 +367,39 @@ desired effect
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        Page Header
-        <small>Optional description</small>
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-        <li class="active">Here</li>
-      </ol>
-    </section>
-
-    <!-- Main content -->
-    <section class="content container-fluid">
-
-      <!--------------------------
-        | Your Page Content Here |
-        -------------------------->
-
-    </section>
-    <!-- /.content -->
-  </div>
+   <!-- Content Header (Page header) -->
+   <section class="content-header">
+     <h1>News
+       <small>it all starts here</small>
+     </h1>
+     <ol class="breadcrumb">
+       <li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
+       <li><a href="#">Administrateur</a></li>
+       <li class="active">Gerer Equip</li>
+     </ol>
+   </section>
+   <?php
+   $conn =new PDO('mysql:host=localhost;dbname=projet','root','');
+   $q="select * from news";
+   ?>
+   <!-- Main content -->
+   <section class="content">
+     <!-- Default box -->
+         <?php
+         foreach ($conn->query($q) as $line) {
+            echo "<div class='news'>";
+            echo "<div class='news-title'><h2>".$line[1]."</h2></div>";
+            echo "<div class='news-text'><h5><p>".$line[3]."</p></h5></div>";
+            echo "<div class='news-photo'><img class='img' src='".$line[4]."'></div>";
+            echo "<div class='news-vedio'><img class='img' src='".$line[5]."''></div>";
+            echo "<div class='news-date'><h6>".$line[6]."</h6></div>";
+            echo "<div class='news-author'<h4>".$line[2]."</h4></div>";
+            echo "</div>";
+         }
+         ?>
+   </section>
+   <!-- /.content -->
+ </div>
   <!-- /.content-wrapper -->
 
   <!-- Main Footer -->

@@ -17,6 +17,10 @@ body {
 .layout-boxed body {
   height: 100%;
 }
+.imga{
+  width: 40px;
+  height: 40px;
+}
 body {
   font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 400;

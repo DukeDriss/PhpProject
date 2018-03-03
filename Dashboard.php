@@ -1,3 +1,12 @@
+<?php session_start();
+if(!isset($_SESSION['id'])){
+  header("location:index.php");
+}
+
+
+
+
+?>
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
@@ -179,7 +188,7 @@ desired effect
               <!-- The user image in the navbar-->
               <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs">Alexander Pierce</span>
+              <span class="hidden-xs"><?php echo $_SESSION['id']; ?> </span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
@@ -187,7 +196,7 @@ desired effect
                 <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                 <p>
-                  Alexander Pierce - Web Developer
+                  <?php echo $_SESSION['id']; ?> - Web Developer
                   <small>Member since Nov. 2012</small>
                 </p>
               </li>
@@ -237,7 +246,7 @@ desired effect
           <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Alexander Pierce</p>
+          <p><?php echo $_SESSION['id']; ?></p>
           <!-- Status -->
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
@@ -257,22 +266,49 @@ desired effect
 
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">HEADER</li>
-        <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
-        <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#">Link in level 2</a></li>
-            <li><a href="#">Link in level 2</a></li>
-          </ul>
-        </li>
-      </ul>
+       <li class="header">MAIN NAVIGATION</li>
+       <li class="active">
+         <a href="index.html">
+           <i class="fa fa-dashboard"></i> <span>Home</span>
+         </a>
+       </li>
+       <li class="treeview">
+         <a href="#">
+           <i class="fa fa-pie-chart"></i>
+           <span>Menu</span>
+           <span class="pull-right-container">
+             <i class="fa fa-angle-left pull-right"></i>
+           </span>
+         </a>
+         <ul class="treeview-menu">
+           <li><a href="gerer_equip.php"><i class="fa fa-circle-o"></i>Gerer Equipe</a></li>
+           <li><a href="gerer_news.php"><i class="fa fa-circle-o"></i>Gérer  News</a></li>
+           <li><a href="gerer_comptes.php"><i class="fa fa-circle-o"></i>Gérer Comptes</a></li>
+           <li><a href="gerer_matches.php"><i class="fa fa-circle-o"></i>Gérer Matchs</a></li>
+         </ul>
+       </li>
+       <li class="treeview">
+         <a href="#">
+           <i class="fa fa-pie-chart"></i>
+           <span>Statistique</span>
+           <span class="pull-right-container">
+             <i class="fa fa-angle-left pull-right"></i>
+           </span>
+         </a>
+         <ul class="treeview-menu">
+           <li><a href="Comptes.php"><i class="fa fa-circle-o"></i>Comptes</a></li>
+           <li><a href="matches.php"><i class="fa fa-circle-o"></i> Matchs</a></li>
+           <li><a href="news.php"><i class="fa fa-circle-o"></i>News</a></li>
+           <li><a href="equip.pgp"><i class="fa fa-circle-o"></i>Les équipes</a></li>
+         </ul>
+       </li>
+       <li>
+         <a href="pages/Graph">
+           <i class="fa fa-pie-chart"></i>
+           <span>Graphes</span>
+         </a>
+       </li>
+     </ul>
       <!-- /.sidebar-menu -->
     </section>
     <!-- /.sidebar -->

@@ -1,3 +1,32 @@
+<?php session_start();
+if($_SESSION['type']!="Administrateur"){
+  header("location:index.php");
+}
+?>
+<?php
+$con = new mysqli ('localhost','root','','projet');
+
+if(isset($_POST['nom'])){
+  $id= $_POST['id'];
+  $nom = $_POST['nom'];
+  $stade= $_POST['stade'];
+  $logo= $_POST['logo'];
+  $adresse= $_POST['adresse'];
+  $email= $_POST['email'];
+  $site= $_POST['site'];
+  $fax= $_POST['fax'];
+  $tel= $_POST['tel'];
+  $ville= $_POST['ville'];
+$query = "INSERT INTO  `equipe` (`CodeEquipe`,`NomEquipe`,`Stade`,`logo`,`adresse`,`email`,`site`,`tel`,`fax`,`ville`) VALUES  ('$id','$nom','$stade','$logo','$adresse','$email','$site','$tel','$fax','$ville') ";
+if ($con->query($query) === TRUE) {
+    echo "Record Inserted successfully";
+} else {
+    echo "Error Inserting record: " . $con->error;
+}
+}
+
+
+?>
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
@@ -10,17 +39,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <title>AdminLTE 2 | Starter</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.min.css">
   <!-- Ionicons -->
-  <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
+  <link rel="stylesheet" href="../bower_components/Ionicons/css/ionicons.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="../dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
         page. However, you can choose any other skin. Make sure you
         apply the skin class to the body tag so the changes take effect. -->
-  <link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
+  <link rel="stylesheet" href="../dist/css/skins/skin-blue.min.css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -179,7 +208,7 @@ desired effect
               <!-- The user image in the navbar-->
               <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs">Alexander Pierce</span>
+              <span class="hidden-xs"><?php echo $_SESSION['id']; ?> </span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
@@ -187,7 +216,7 @@ desired effect
                 <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                 <p>
-                  Alexander Pierce - Web Developer
+                  <?php echo $_SESSION['id']; ?> - Web Developer
                   <small>Member since Nov. 2012</small>
                 </p>
               </li>
@@ -237,7 +266,7 @@ desired effect
           <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Alexander Pierce</p>
+          <p><?php echo $_SESSION['id']; ?></p>
           <!-- Status -->
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
@@ -257,22 +286,49 @@ desired effect
 
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">HEADER</li>
-        <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
-        <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#">Link in level 2</a></li>
-            <li><a href="#">Link in level 2</a></li>
-          </ul>
-        </li>
-      </ul>
+       <li class="header">MAIN NAVIGATION</li>
+       <li class="active">
+         <a href="index.html">
+           <i class="fa fa-dashboard"></i> <span>Home</span>
+         </a>
+       </li>
+       <li class="treeview">
+         <a href="#">
+           <i class="fa fa-pie-chart"></i>
+           <span>Menu</span>
+           <span class="pull-right-container">
+             <i class="fa fa-angle-left pull-right"></i>
+           </span>
+         </a>
+         <ul class="treeview-menu">
+           <li><a href="../gerer_equip.php"><i class="fa fa-circle-o"></i>Gerer Equipe</a></li>
+           <li><a href="../gerer_news.php"><i class="fa fa-circle-o"></i>Gérer  News</a></li>
+           <li><a href="../gerer_comptes.php"><i class="fa fa-circle-o"></i>Gérer Comptes</a></li>
+           <li><a href="../gerer_matches.php"><i class="fa fa-circle-o"></i>Gérer Matchs</a></li>
+         </ul>
+       </li>
+       <li class="treeview">
+         <a href="#">
+           <i class="fa fa-pie-chart"></i>
+           <span>Statistique</span>
+           <span class="pull-right-container">
+             <i class="fa fa-angle-left pull-right"></i>
+           </span>
+         </a>
+         <ul class="treeview-menu">
+           <li><a href="Comptes.php"><i class="fa fa-circle-o"></i>Comptes</a></li>
+           <li><a href="matches.php"><i class="fa fa-circle-o"></i> Matchs</a></li>
+           <li><a href="news.php"><i class="fa fa-circle-o"></i>News</a></li>
+           <li><a href="equip.pgp"><i class="fa fa-circle-o"></i>Les équipes</a></li>
+         </ul>
+       </li>
+       <li>
+         <a href="pages/Graph">
+           <i class="fa fa-pie-chart"></i>
+           <span>Graphes</span>
+         </a>
+       </li>
+     </ul>
       <!-- /.sidebar-menu -->
     </section>
     <!-- /.sidebar -->
@@ -294,11 +350,23 @@ desired effect
 
     <!-- Main content -->
     <section class="content container-fluid">
+      <form method="post" target="equipe-edit.php">
+          <table class="table table-inverse">
 
-      <!--------------------------
-        | Your Page Content Here |
-        -------------------------->
-
+            <tr>  <th>Code Equipe</th> <td><input type="text" name="id" ></td></tr>
+            <tr>  <th>Nom Equipe</th> <td><input type="text" name="nom" ></td></tr>
+            <tr>  <th>Date Creation</th><td><input type="date" name="date" ></td>  </tr>
+            <tr>  <th>stade</th> <td><input type="text" name="stade" ></td> </tr>
+            <tr>  <th>logo</th><td><input type="text" name="logo" ></td></tr>
+            <tr>  <th>adresse</th><td><input type="text" name="adresse" ></td></tr>
+            <tr>  <th>email</th><td><input type="text" name="email" ></td></tr>
+            <tr>  <th>site</th><td><input type="text" name="site" ></td></tr>
+            <tr>  <th>tel</th><td><input type="text" name="tel" ></td></tr>
+            <tr>  <th>fax</th><td><input type="text" name="fax" ></td></tr>
+            <tr>  <th>ville</th><td><input type="text" name="ville" ></td></tr>
+            <tr>  <td><input class="btn btn-success" value="save" type="submit"></td><td><a href="../gerer_equip.php"><input class="btn btn-danger" value="return" type="button"></a></td></tr>
+          </table>
+      </form>
     </section>
     <!-- /.content -->
   </div>
@@ -396,11 +464,11 @@ desired effect
 <!-- REQUIRED JS SCRIPTS -->
 
 <!-- jQuery 3 -->
-<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="../bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
-<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
-<script src="dist/js/adminlte.min.js"></script>
+<script src="../dist/js/adminlte.min.js"></script>
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
